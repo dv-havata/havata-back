@@ -2,9 +2,8 @@ const EXPRESS = require('express');
 const ROUTER = EXPRESS.Router();
 
 /* GET home page. */
-ROUTER.post('/test', function (req, res) {
-	console.log('test request is received');
-	res.json({ name: 'hi' });
+ROUTER.post('/upload', async function (req, res) {
+	console.log(req.body);
 });
 
 module.exports = ROUTER;
