@@ -12,12 +12,12 @@ const MedicalService = {
 	addBunCrRatio: (testResult) => {
 		const { bun, creatinine } = testResult;
 		const bunCrRatio = (bun / creatinine).toFixed(2);
-		const result = { ...items, bunCrRatio };
+		const result = { ...testResult, bunCrRatio };
 		return result;
 	},
 	genResponseText: (testResult) => {
 		let responseText = '';
-		for (const [key, value] of testResult) {
+		for (const [key, value] of Object.entries(testResult)) {
 			switch (key) {
 				case 'bun':
 					if (value >= 26) {

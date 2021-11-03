@@ -1,3 +1,5 @@
+const RouterService = require('./router_service');
+
 const CommonService = {
 	getPagingData: function (page, tot_cnt, BOARD_LINE_LIMIT) {
 		//def pagenum
