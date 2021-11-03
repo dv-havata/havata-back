@@ -4,13 +4,9 @@ class RoutesSetterClass {
 	}
 
 	setDefaultRoutes(app) {
-		const IndexRouter = require('./index');
-		const AdminRouter = require('./admin/admin_controller');
 		const KakaoRouter = require('./kakao/kakao_controller');
 
-		app.use('/', IndexRouter);
 		app.use('/api', KakaoRouter);
-		app.use('/admin', AdminRouter);
 	}
 }
 
