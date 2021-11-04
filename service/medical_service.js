@@ -88,6 +88,7 @@ const MedicalService = {
 						baseFormat.title = 'Total CO2';
 						baseFormat.description = 'severe metabolic acidosis 텍스트';
 					}
+					break;
 				case 'hb':
 					if (value < 13.8) {
 						responseText += 'Hb 기준치 미달 텍스트\n\n';
