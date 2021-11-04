@@ -1,14 +1,6 @@
 const TestResultDao = require('../dao/test_result_dao');
 
 const MedicalService = {
-	// { total_co2: 1,
-	// phosphate: 1,
-	// hb: 1,
-	// egfr: 1,
-	// checkup_date: '2021-11-03',
-	// creatinine: 1,
-	// bun: 1,
-	// k: 1 }
 	addBunCrRatio: (testResult) => {
 		const { bun, creatinine } = testResult;
 		const bunCrRatio = (bun / creatinine).toFixed(2);
@@ -126,16 +118,18 @@ const MedicalService = {
 				baseFormat.buttons[0].messageText = key;
 			}
 		}
+
+		if (outputs[0].carousel.items.length === 0) {
+			outputs.pop();
+			outputs.push({
+				simpleText: {
+					text: '정상범위 텍스트',
+				},
+			});
+		}
+
 		return { outputs, responseText };
 	},
-	//total_co2: 1,
-	// phosphate: 1,
-	// hb: 1,
-	// egfr: 1,
-	// checkup_date: '2021-11-03',
-	// creatinine: 1,
-	// bun: 1,
-	// k: 1
 	insertTestResult: async (req, res, testResult) => {
 		const {
 			userId,
