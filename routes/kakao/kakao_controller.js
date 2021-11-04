@@ -15,8 +15,8 @@ ROUTER.post('/submit', function (req, res) {
 
 	const parsedPayload = KakaoService.payloadParser(params);
 	const totalTestResult = MedicalService.addBunCrRatio(parsedPayload);
-	const outputs = MedicalService.genResponseCard(totalTestResult);
-
+	const results = MedicalService.genResponseCard(totalTestResult);
+	const { responseText, outputs } = results;
 	const insertTestResult = MedicalService.insertTestResult(req, res, {
 		userId,
 		responseText,
