@@ -15,7 +15,7 @@ ROUTER.post('/submit', function (req, res) {
 
 	const parsedPayload = KakaoService.payloadParser(params);
 	const totalTestResult = MedicalService.addBunCrRatio(parsedPayload);
-	const responseText = MedicalService.genResponseText(totalTestResult);
+	const outputs = MedicalService.genResponseCard(totalTestResult);
 
 	const insertTestResult = MedicalService.insertTestResult(req, res, {
 		userId,
@@ -30,7 +30,7 @@ ROUTER.post('/submit', function (req, res) {
 				outputs: [
 					{
 						simpleText: {
-							text: responseText,
+							text: '일시적인 오류가 발생하였습니다. 잠시후에 다시 시도해주시기 바랍니다.',
 						},
 					},
 				],
@@ -41,13 +41,7 @@ ROUTER.post('/submit', function (req, res) {
 		const responseBody = {
 			version: '2.0',
 			template: {
-				outputs: [
-					{
-						simpleText: {
-							text: '일시적인 오류가 발생하였습니다. 잠시후에 다시 시도해주시기 바랍니다.',
-						},
-					},
-				],
+				outputs,
 			},
 		};
 		res.status(200).send(responseBody);

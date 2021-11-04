@@ -15,65 +15,94 @@ const MedicalService = {
 		const result = { ...testResult, bunCrRatio };
 		return result;
 	},
-	genResponseText: (testResult) => {
-		let responseText = '';
+	genResponseCard: (testResult) => {
+		const output = [];
 		for (const [key, value] of Object.entries(testResult)) {
+			const baseFormat = {
+				basicCard: {
+					title: '',
+					description: '',
+				},
+			};
 			switch (key) {
 				case 'bun':
 					if (value >= 26) {
-						responseText += 'bun 기준치 초과 텍스트\n\n';
+						baseFormat.basicCard.title = 'BUN';
+						baseFormat.basicCard.description = 'bun 기준치 초과 텍스트';
 					}
 					break;
 				case 'phosphate':
 					if (value > 4.5) {
-						responseText += 'phosphate 기준치 초과 텍스트\n\n';
+						baseFormat.basicCard.title = 'Phosphate';
+						baseFormat.basicCard.description = 'Phosphate 기준치 초과 텍스트';
 					}
 					break;
 				case 'k':
 					if (value > 5) {
-						responseText += 'k 기준치 초과 텍스트\n\n';
+						baseFormat.basicCard.title = 'K';
+						baseFormat.basicCard.description = 'K 기준치 초과 텍스트';
 					}
 					break;
 				case 'egfr':
 					if (value >= 90) {
-						responseText += 'G1 텍스트\n\n';
+						baseFormat.basicCard.title = 'eGFR';
+						baseFormat.basicCard.description = 'G1 텍스트';
 					} else if (value >= 60 && value <= 89) {
-						responseText += 'G2 텍스트\n\n';
+						baseFormat.basicCard.title = 'eGFR';
+						baseFormat.basicCard.description = 'G2 텍스트';
 					} else if (value >= 45 && value <= 59) {
-						responseText += 'G3a 텍스트\n\n';
+						baseFormat.basicCard.title = 'eGFR';
+						baseFormat.basicCard.description = 'G3a 텍스트';
 					} else if (value >= 30 && value <= 44) {
-						responseText += 'G3b 텍스트\n\n';
+						baseFormat.basicCard.title = 'eGFR';
+						baseFormat.basicCard.description = 'G3b 텍스트';
 					} else if (value >= 15 && value <= 29) {
-						responseText += 'G4 텍스트\n\n';
+						baseFormat.basicCard.title = 'eGFR';
+						baseFormat.basicCard.description = 'G4 텍스트';
 					} else {
-						responseText += 'G5 텍스트\n\n';
+						baseFormat.basicCard.title = 'eGFR';
+						baseFormat.basicCard.description = 'G5 텍스트';
 					}
 					break;
 				case 'total_co2':
 					if (value > 29 && value < 40) {
-						responseText += 'mild metabolic acidosis 텍스트\n\n';
+						baseFormat.basicCard.title = 'Total CO2';
+						baseFormat.basicCard.description = 'mild metabolic acidosis 텍스트';
 					} else if (value >= 40) {
-						responseText += 'severe metabolic acidosis 텍스트\n\n';
+						baseFormat.basicCard.title = 'Total CO2';
+						baseFormat.basicCard.description =
+							'severe metabolic acidosis 텍스트';
 					}
 				case 'hb':
 					if (value < 13.8) {
-						responseText += 'hb 기준치 미달 텍스트\n\n';
+						baseFormat.basicCard.title = 'Hb';
+						baseFormat.basicCard.description = 'Hb 기준치 미달 텍스트';
 					}
 					break;
 				case 'creatinine':
 					if (value < 1.3) {
-						responseText += 'creatinine 기준치 미달 텍스트\n\n';
+						baseFormat.basicCard.title = 'Creatinine';
+						baseFormat.basicCard.description = 'Creatinine 기준치 미달 텍스트';
 					}
 					break;
 				case 'bunCrRatio':
 					if (value < 20) {
-						responseText += 'bunCrRatio 기준치 미달 텍스트\n\n';
+						baseFormat.basicCard.title = 'BUN / Cr';
+						baseFormat.basicCard.description = 'BUN / Cr 기준치 미달 텍스트';
 					}
 					break;
 				default:
 					break;
 			}
+
+			if (
+				baseFormat.basicCard.title.length > 0 &&
+				baseFormat.basicCard.description.length > 0
+			) {
+				output.push(baseFormat);
+			}
 		}
+		return output;
 	},
 	//total_co2: 1,
 	// phosphate: 1,
