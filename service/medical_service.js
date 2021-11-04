@@ -26,7 +26,17 @@ const MedicalService = {
 		];
 		let responseText = '';
 		for (const [key, value] of Object.entries(testResult)) {
-			const baseFormat = { title: '', description: '' };
+			const baseFormat = {
+				title: '',
+				description: '',
+				buttons: [
+					{
+						action: 'message',
+						label: '더 알아보기',
+						messageText: '',
+					},
+				],
+			};
 			switch (key) {
 				case 'bun':
 					if (value >= 26) {
@@ -113,6 +123,7 @@ const MedicalService = {
 
 			if (baseFormat.title.length > 0 && baseFormat.description.length > 0) {
 				outputs[0].carousel.items.push(baseFormat);
+				baseFormat.buttons[0].messageText = key;
 			}
 		}
 		return { outputs, responseText };
