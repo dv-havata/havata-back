@@ -119,9 +119,11 @@ const MedicalService = {
 					break;
 				case 'na':
 					if (value < 136 || value > 145) {
-						responseText += 'Na 텍스트\n\n';
+						responseText +=
+							'나트륨은 모든 체액에 존재하지만 혈액 및 세포 외액에 가장 높은 농도로 존재하는데요, 체내의 수분뿐 아니라 세포외 나트륨도 신장에 의해 조절돼요. 혈중 나트륨 농도에 변화가 생길 때, 체내 수분양도 같이 변화하는데, 이러한 변화는 탈수나 부종, 특히 다리의 부종과 연관될 수 있어요.\n\n';
 						baseFormat.title = 'Na';
-						baseFormat.description = 'Na 텍스트';
+						baseFormat.description =
+							'나트륨은 모든 체액에 존재하지만 혈액 및 세포 외액에 가장 높은 농도로 존재하는데요, 체내의 수분뿐 아니라 세포외 나트륨도 신장에 의해 조절돼요. 혈중 나트륨 농도에 변화가 생길 때, 체내 수분양도 같이 변화하는데, 이러한 변화는 탈수나 부종, 특히 다리의 부종과 연관될 수 있어요.';
 					}
 					break;
 				case 'bunCrRatio':
