@@ -34,6 +34,9 @@ const TestResultModel = base.define('testResult', {
 	totalCarbonDioxide: {
 		type: sequelize.DECIMAL,
 	},
+	na: {
+		type: sequelize.DECIMAL,
+	},
 	bunCrRatio: {
 		type: sequelize.DECIMAL,
 	},
